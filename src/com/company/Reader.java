@@ -14,16 +14,19 @@ public class Reader implements Runnable{
     @Override
     public void run() {
         try {
-            while (list.isEmpty()) {
-                Thread.sleep(1000);
-                System.out.println(date.format(LocalDateTime.now()) + " The list is Empty");
+            while (true) {
+                if(list.isEmpty()) {
+                    Thread.sleep(1000);
+                    System.out.println(date.format(LocalDateTime.now()) + " The list is Empty");
+                    continue;
+                }
+                for (Integer i: list) {
+                    System.out.println(i);
+                }
+                list.clear();
             }
 
-            for (Integer i: list) {
-                System.out.println(i);
-            }
 
-            list.clear();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
